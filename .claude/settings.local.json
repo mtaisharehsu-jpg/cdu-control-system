@@ -35,7 +35,9 @@
       "Bash(npx tsc:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git tag:*)"
     ],
     "deny": []
   }
