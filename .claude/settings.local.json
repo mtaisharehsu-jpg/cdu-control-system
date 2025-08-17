@@ -37,7 +37,14 @@
       "Bash(mv:*)",
       "Bash(git add:*)",
       "Bash(git checkout:*)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(git restore:*)",
+      "Bash(git push:*)",
+      "Bash(git remote remove:*)",
+      "Bash(gh:*)",
+      "Bash(git remote add:*)",
+      "Bash(git fetch:*)",
+      "Bash(npm:*)"
     ],
     "deny": []
   }
