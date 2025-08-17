@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDU 前端警告檢查</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .log-output {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 CDU 前端警告檢查工具</h1>
+        
+        <div class="info status">
+            <strong>使用說明:</strong><br>
+            1. 確保CDU前端開發服務器正在運行 (localhost:5173)<br>
+            2. 點擊下方按鈕檢查各種狀態<br>
+            3. 查看控制台輸出了解詳細信息
+        </div>
+
+        <div id="status-display">
+            <div class="info status">
+                等待檢查...
+            </div>
+        </div>
+
+        <div>
+            <button onclick="checkFrontendStatus()">檢查前端狀態</button>
+            <button onclick="checkConsoleWarnings()">檢查控制台警告</button>
+            <button onclick="testNavigation()">測試頁面導航</button>
+            <button onclick="clearLogs()">清除日誌</button>
+        </div>
+
+        <div id="log-output" class="log-output" style="display: none;">
+            <!-- 日誌輸出區域 -->
+        </div>
+    </div>
+
+    <script>
+        let logOutput = document.getElementById('log-output');
+        let statusDisplay = document.getElementById('status-display');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}\n`;
+            
+            if (logOutput.style.display === 'none') {
+                logOutput.style.display = 'block';
+            }
+            
+            logOutput.textContent += logMessage;
+            logOutput.scrollTop = logOutput.scrollHeight;
+            
+            console.log(message);
+        }
+        
+        function updateStatus(message, type = 'info') {
+            statusDisplay.innerHTML = `<div class="${type} status">${message}</div>`;
+        }
+        
+        function clearLogs() {
+            logOutput.textContent = '';
+            logOutput.style.display = 'none';
+            updateStatus('日誌已清除', 'info');
+        }
+        
+        async function checkFrontendStatus() {
+            updateStatus('正在檢查前端狀態...', 'info');
+            log('開始檢查前端狀態');
+            
+            try {
+                const response = await fetch('http://localhost:5173/', {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    log('✅ 前端服務器響應正常');
+                    log(`狀態碼: ${response.status}`);
+                    log(`內容類型: ${response.headers.get('content-type')}`);
+                    
+                    if (text.includes('<div id="root">')) {
+                        log('✅ HTML結構正常');
+                        updateStatus('✅ 前端狀態正常', 'success');
+                    } else {
+                        log('⚠️ HTML結構可能有問題');
+                        updateStatus('⚠️ HTML結構異常', 'warning');
+                    }
+                } else {
+                    log(`❌ 前端服務器響應異常: ${response.status}`);
+                    updateStatus('❌ 前端服務器響應異常', 'error');
+                }
+            } catch (error) {
+                log(`❌ 無法連接到前端服務器: ${error.message}`);
+                updateStatus('❌ 無法連接到前端服務器', 'error');
+            }
+        }
+        
+        function checkConsoleWarnings() {
+            updateStatus('正在檢查控制台警告...', 'info');
+            log('開始檢查控制台警告');
+            
+            // 覆蓋console方法來捕獲警告
+            const originalWarn = console.warn;
+            const originalError = console.error;
+            let warningCount = 0;
+            let errorCount = 0;
+            
+            console.warn = function(...args) {
+                warningCount++;
+                log(`⚠️ 警告 ${warningCount}: ${args.join(' ')}`);
+                originalWarn.apply(console, args);
+            };
+            
+            console.error = function(...args) {
+                errorCount++;
+                log(`❌ 錯誤 ${errorCount}: ${args.join(' ')}`);
+                originalError.apply(console, args);
+            };
+            
+            // 5秒後恢復原始console方法並報告結果
+            setTimeout(() => {
+                console.warn = originalWarn;
+                console.error = originalError;
+                
+                if (warningCount === 0 && errorCount === 0) {
+                    log('✅ 沒有發現新的警告或錯誤');
+                    updateStatus('✅ 控制台狀態良好', 'success');
+                } else {
+                    log(`檢查完成: ${warningCount} 個警告, ${errorCount} 個錯誤`);
+                    updateStatus(`發現 ${warningCount} 個警告, ${errorCount} 個錯誤`, 'warning');
+                }
+            }, 5000);
+            
+            log('正在監控控制台輸出 (5秒)...');
+        }
+        
+        function testNavigation() {
+            updateStatus('正在測試頁面導航...', 'info');
+            log('開始測試頁面導航');
+            
+            // 嘗試打開CDU前端頁面
+            try {
+                const newWindow = window.open('http://localhost:5173', '_blank');
+                if (newWindow) {
+                    log('✅ 成功打開CDU前端頁面');
+                    updateStatus('✅ 頁面導航測試成功', 'success');
+                    
+                    // 5秒後關閉窗口
+                    setTimeout(() => {
+                        newWindow.close();
+                        log('測試窗口已關閉');
+                    }, 5000);
+                } else {
+                    log('❌ 無法打開新窗口 (可能被瀏覽器阻止)');
+                    updateStatus('❌ 無法打開新窗口', 'error');
+                }
+            } catch (error) {
+                log(`❌ 導航測試失敗: ${error.message}`);
+                updateStatus('❌ 導航測試失敗', 'error');
+            }
+        }
+        
+        // 頁面載入時自動檢查
+        window.addEventListener('load', () => {
+            log('警告檢查工具已載入');
+            updateStatus('工具已準備就緒，點擊按鈕開始檢查', 'info');
+        });
+    </script>
+</body>
+</html>

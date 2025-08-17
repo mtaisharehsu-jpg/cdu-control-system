@@ -1,0 +1,56 @@
+{
+  "screen": {
+    "width": 1024,
+    "height": 600,
+    "dpi": 96,
+    "orientation": "landscape",
+    "brightness": 80,
+    "timeout": 300,
+    "touch_sensitivity": 7,
+    "enable_gestures": true,
+    "calibrated": false
+  },
+  "websocket": {
+    "host": "0.0.0.0",
+    "port": 8765,
+    "enabled": true
+  },
+  "touch_settings": {
+    "min_swipe_distance": 50,
+    "long_press_duration": 1000,
+    "double_tap_interval": 300,
+    "multi_touch_enabled": true
+  },
+  "ui_adaptations": {
+    "button_min_size": 44,
+    "spacing_multiplier": 1.5,
+    "font_size_multiplier": 1.2,
+    "enable_haptic_feedback": true
+  },
+  "gestures": {
+    "swipe_left": {
+      "action": "previous_tab",
+      "enabled": true
+    },
+    "swipe_right": {
+      "action": "next_tab", 
+      "enabled": true
+    },
+    "swipe_up": {
+      "action": "show_menu",
+      "enabled": true
+    },
+    "swipe_down": {
+      "action": "hide_menu",
+      "enabled": true
+    },
+    "long_press": {
+      "action": "context_menu",
+      "enabled": true
+    },
+    "double_tap": {
+      "action": "zoom_toggle",
+      "enabled": true
+    }
+  }
+}

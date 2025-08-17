@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-selfcheck.json
+*.egg-info/
+
+# Build artifacts
+*.so
+*.dll
+build/
+dist/
+*.o
+*.a
+
+# HAL compiled libraries
+hal/lib-cdu-hal.dll
+hal/lib-cdu-hal.so
+
+# Logs and temporary files
+log/
+logs/
+*.log
+*.txt
+api_service.log
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log*
+package-lock.json
+.npm
+
+# IDE/Editor specific
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+.env.staging
+
+# Configuration files with sensitive data
+*_config_production.yaml
+*_config_staging.yaml
+secret_*.json
+certs/private/
+
+# Backup and temporary files
+*.bak
+*.tmp
+*.temp
+*~
+.#*
+2025-*-this-session-is-being-continued-from-a-previous-co.txt
+
+# System files
+Thumbs.db
+*.DS_Store
+
+# Docker
+.dockerignore
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Documentation build
+docs/_build/
+site/

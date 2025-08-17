@@ -1,0 +1,42 @@
+{
+  "base_log_path": "logs",
+  "rotation": {
+    "max_size_mb": 10,
+    "max_files": 10,
+    "compress": true
+  },
+  "retention": {
+    "system_log_days": 730,
+    "trap_log_days": 365,
+    "event_log_days": 365,
+    "control_log_days": 180,
+    "access_log_days": 90,
+    "api_log_days": 30,
+    "sensor_log_days": 90,
+    "plc_log_days": 180,
+    "error_log_days": 365,
+    "security_log_days": 1095
+  },
+  "formats": {
+    "system": "%(asctime)s - %(levelname)s - %(component)s - %(message)s",
+    "trap": "%(asctime)s - TRAP - %(alarm_id)s - %(level)s - %(message)s",
+    "event": "%(asctime)s - EVENT - %(user_id)s - %(action)s - %(details)s",
+    "control": "%(asctime)s - CONTROL - %(parameter)s - %(old_value)s -> %(new_value)s",
+    "access": "%(asctime)s - ACCESS - %(source_ip)s - %(user_id)s - %(endpoint)s - %(status)s",
+    "api": "%(asctime)s - API - %(method)s - %(endpoint)s - %(response_time)s ms - %(status)s",
+    "sensor": "%(asctime)s - SENSOR - %(sensor_id)s - %(value)s %(unit)s - %(status)s",
+    "plc": "%(asctime)s - PLC - %(device_id)s - %(register)s - %(value)s",
+    "error": "%(asctime)s - ERROR - %(component)s - %(error_code)s - %(message)s",
+    "security": "%(asctime)s - SECURITY - %(event_type)s - %(user_id)s - %(details)s"
+  },
+  "buffer_settings": {
+    "enabled": true,
+    "max_entries": 1000,
+    "flush_interval": 60
+  },
+  "compression": {
+    "enabled": true,
+    "algorithm": "gzip",
+    "level": 6
+  }
+}

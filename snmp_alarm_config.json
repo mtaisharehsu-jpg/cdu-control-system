@@ -1,0 +1,243 @@
+{
+  "snmp": {
+    "enabled": true,
+    "destination_ip": "192.168.100.100",
+    "port": 162,
+    "community": "public",
+    "version": "v2c",
+    "warning_interval": 30,
+    "alert_interval": 10,
+    "enterprise_oid": "1.3.6.1.4.1.30628.1234"
+  },
+  "thresholds": {
+    "temperature": {
+      "server_inlet_warning_min": 15.0,
+      "server_inlet_warning_max": 35.0,
+      "server_inlet_alert_min": 10.0,
+      "server_inlet_alert_max": 40.0,
+      "server_outlet_warning_min": 18.0,
+      "server_outlet_warning_max": 38.0,
+      "server_outlet_alert_min": 13.0,
+      "server_outlet_alert_max": 43.0,
+      "facility_inlet_warning_min": 5.0,
+      "facility_inlet_warning_max": 45.0,
+      "facility_inlet_alert_min": 0.0,
+      "facility_inlet_alert_max": 50.0,
+      "facility_outlet_warning_min": 8.0,
+      "facility_outlet_warning_max": 42.0,
+      "facility_outlet_alert_min": 3.0,
+      "facility_outlet_alert_max": 47.0,
+      "ambient_warning_max": 40.0,
+      "ambient_alert_max": 45.0
+    },
+    "pressure": {
+      "server_inlet_warning_min": 0.15,
+      "server_inlet_alert_min": 0.10,
+      "server_diff_warning_min": 0.04,
+      "server_diff_warning_max": 0.16,
+      "server_diff_alert_min": 0.03,
+      "server_diff_alert_max": 0.17,
+      "facility_warning_min": 0.12,
+      "facility_alert_min": 0.08,
+      "system_pressure_warning_max": 0.8,
+      "system_pressure_alert_max": 1.0
+    },
+    "flow": {
+      "server_warning_min": 15.0,
+      "server_warning_max": 190.0,
+      "server_alert_min": 5.0,
+      "server_alert_max": 200.0,
+      "facility_warning_min": 12.0,
+      "facility_warning_max": 185.0,
+      "facility_alert_min": 8.0,
+      "facility_alert_max": 195.0,
+      "flow_imbalance_warning": 10.0,
+      "flow_imbalance_alert": 20.0
+    },
+    "device": {
+      "pump_rpm_warning_min": 300.0,
+      "pump_rpm_alert_min": 100.0,
+      "pump_rpm_warning_max": 1800.0,
+      "pump_rpm_alert_max": 2000.0,
+      "pump_vibration_warning": 5.0,
+      "pump_vibration_alert": 8.0,
+      "valve_position_tolerance": 5.0,
+      "valve_response_timeout": 30.0
+    },
+    "power": {
+      "voltage_warning_min": 200.0,
+      "voltage_alert_min": 180.0,
+      "voltage_warning_max": 250.0,
+      "voltage_alert_max": 270.0,
+      "current_warning_max": 15.0,
+      "current_alert_max": 18.0,
+      "power_factor_warning_min": 0.8,
+      "power_factor_alert_min": 0.7
+    },
+    "leak": {
+      "liquid_level_warning_min": 20.0,
+      "liquid_level_alert_min": 10.0,
+      "leak_detection_sensitivity": 1,
+      "leak_response_time": 5.0
+    },
+    "system": {
+      "cpu_usage_warning": 80.0,
+      "cpu_usage_alert": 90.0,
+      "memory_usage_warning": 75.0,
+      "memory_usage_alert": 85.0,
+      "disk_usage_warning": 80.0,
+      "disk_usage_alert": 90.0,
+      "communication_timeout": 10.0,
+      "heartbeat_interval": 60.0
+    }
+  },
+  "alarm_categories": {
+    "temperature": {
+      "name": "溫度警報",
+      "color": "#ff9800",
+      "icon": "thermostat"
+    },
+    "pressure": {
+      "name": "壓力警報", 
+      "color": "#2196f3",
+      "icon": "speed"
+    },
+    "flow": {
+      "name": "流量警報",
+      "color": "#00bcd4",
+      "icon": "water_drop"
+    },
+    "device": {
+      "name": "設備警報",
+      "color": "#9c27b0",
+      "icon": "settings"
+    },
+    "power": {
+      "name": "電源警報",
+      "color": "#f44336",
+      "icon": "power"
+    },
+    "leak": {
+      "name": "洩漏警報",
+      "color": "#e91e63",
+      "icon": "warning"
+    },
+    "system": {
+      "name": "系統警報",
+      "color": "#607d8b",
+      "icon": "computer"
+    },
+    "communication": {
+      "name": "通訊警報",
+      "color": "#795548",
+      "icon": "network_check"
+    }
+  },
+  "notification_settings": {
+    "email": {
+      "enabled": true,
+      "smtp_server": "smtp.company.com",
+      "smtp_port": 587,
+      "username": "cdu_alerts@company.com",
+      "password": "encrypted_password",
+      "recipients": [
+        "maintenance@company.com",
+        "operations@company.com"
+      ]
+    },
+    "sms": {
+      "enabled": false,
+      "provider": "twilio",
+      "account_sid": "",
+      "auth_token": "",
+      "from_number": "",
+      "to_numbers": []
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "https://hooks.company.com/cdu-alerts",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Bearer token"
+      }
+    }
+  },
+  "escalation_rules": {
+    "temperature_alert": {
+      "initial_notification": 0,
+      "escalation_interval": 300,
+      "max_escalations": 3,
+      "escalation_contacts": [
+        "supervisor@company.com",
+        "manager@company.com",
+        "director@company.com"
+      ]
+    },
+    "leak_alert": {
+      "initial_notification": 0,
+      "escalation_interval": 60,
+      "max_escalations": 5,
+      "escalation_contacts": [
+        "emergency@company.com",
+        "safety@company.com"
+      ]
+    },
+    "system_alert": {
+      "initial_notification": 0,
+      "escalation_interval": 600,
+      "max_escalations": 2,
+      "escalation_contacts": [
+        "it_support@company.com",
+        "it_manager@company.com"
+      ]
+    }
+  },
+  "auto_actions": {
+    "leak_detection": {
+      "action": "emergency_stop",
+      "delay": 0,
+      "confirmation_required": false
+    },
+    "temperature_critical": {
+      "action": "reduce_load",
+      "delay": 30,
+      "confirmation_required": true
+    },
+    "pressure_low": {
+      "action": "increase_pump_speed",
+      "delay": 10,
+      "confirmation_required": false
+    },
+    "communication_lost": {
+      "action": "switch_to_manual",
+      "delay": 60,
+      "confirmation_required": true
+    }
+  },
+  "maintenance_windows": [
+    {
+      "name": "每日維護窗口",
+      "start_time": "02:00",
+      "end_time": "04:00",
+      "days": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+      "suppress_alarms": ["system", "communication"],
+      "reduce_sensitivity": true
+    },
+    {
+      "name": "週末維護窗口", 
+      "start_time": "01:00",
+      "end_time": "06:00",
+      "days": ["saturday", "sunday"],
+      "suppress_alarms": ["system"],
+      "reduce_sensitivity": false
+    }
+  ],
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "file_path": "logs/snmp_alarms.log",
+    "max_file_size": "10MB",
+    "backup_count": 5,
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "fault_patterns": [
+    {
+      "pattern_id": "COMM_001",
+      "name": "Modbus 通訊逾時",
+      "description": "與 PLC 設備的 Modbus 通訊發生逾時",
+      "component": "communication", 
+      "severity": "warning",
+      "symptoms": [
+        "設備回應緩慢",
+        "間歇性連接中斷",
+        "數據讀取失敗",
+        "通訊指示燈閃爍"
+      ],
+      "possible_causes": [
+        "網路延遲過高",
+        "RS485 線路干擾",
+        "設備負載過重",
+        "波特率設定錯誤"
+      ],
+      "troubleshooting_steps": [
+        {
+          "step_number": 1,
+          "title": "檢查物理連接",
+          "description": "檢查 RS485 線路連接",
+          "action": "檢查接線端子是否牢固",
+          "expected_result": "連接緊密無鬆動",
+          "safety_warning": null,
+          "required_tools": ["螺絲刀"],
+          "estimated_time": 5,
+          "skill_level": "basic"
+        },
+        {
+          "step_number": 2,
+          "title": "測試通訊參數",
+          "description": "驗證波特率和通訊設定",
+          "action": "使用 Modbus 測試工具驗證設定",
+          "expected_result": "設備能正常回應",
+          "safety_warning": null,
+          "required_tools": ["Modbus 測試軟體"],
+          "estimated_time": 10,
+          "skill_level": "intermediate"
+        }
+      ],
+      "prevention_tips": [
+        "定期檢查線路連接",
+        "使用隔離器減少干擾",
+        "監控通訊品質指標"
+      ],
+      "replacement_parts": ["RS485 轉換器", "隔離器", "通訊線纜"]
+    },
+    {
+      "pattern_id": "LEAK_001", 
+      "name": "冷卻液洩漏檢測",
+      "description": "系統檢測到冷卻液洩漏",
+      "component": "leak",
+      "severity": "emergency",
+      "symptoms": [
+        "洩漏感測器觸發",
+        "液位下降",
+        "地面有液體",
+        "壓力異常下降"
+      ],
+      "possible_causes": [
+        "管路破裂",
+        "接頭鬆動",
+        "密封件老化",
+        "腐蝕穿孔"
+      ],
+      "troubleshooting_steps": [
+        {
+          "step_number": 1,
+          "title": "緊急停機",
+          "description": "立即停止所有泵浦運行",
+          "action": "按下緊急停止按鈕",
+          "expected_result": "系統安全停機",
+          "safety_warning": "注意滑倒風險，穿著防滑鞋",
+          "required_tools": [],
+          "estimated_time": 1,
+          "skill_level": "basic"  
+        },
+        {
+          "step_number": 2,
+          "title": "隔離洩漏區域",
+          "description": "隔離並清理洩漏區域",
+          "action": "關閉相關閥門，清理地面液體",
+          "expected_result": "洩漏得到控制",
+          "safety_warning": "穿戴防護設備，注意通風",
+          "required_tools": ["吸液材料", "防護用品"],
+          "estimated_time": 15,
+          "skill_level": "basic"
+        }
+      ],
+      "prevention_tips": [
+        "定期檢查管路和接頭",
+        "按時更換密封件",
+        "監控系統壓力變化",
+        "保持洩漏感測器清潔"
+      ],
+      "replacement_parts": ["密封件", "管路", "接頭", "洩漏感測器"]
+    }
+  ],
+  "maintenance_schedules": {
+    "daily": [
+      "檢查系統運行狀態",
+      "查看警報記錄",
+      "檢查洩漏情況"
+    ],
+    "weekly": [
+      "檢查泵浦振動",
+      "清潔觸控螢幕",
+      "檢查電氣連接"
+    ],
+    "monthly": [
+      "校驗感測器精度",
+      "檢查軟體更新",
+      "備份系統設定"
+    ],
+    "quarterly": [
+      "更換濾芯",
+      "檢查密封件",
+      "進行系統調試"
+    ],
+    "annually": [
+      "全面系統檢修",
+      "更新韌體版本",
+      "重新校驗設備"
+    ]
+  }
+}

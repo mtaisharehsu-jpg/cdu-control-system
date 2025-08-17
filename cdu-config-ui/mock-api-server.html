@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock API Server for PLC1-Temp4 Testing</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .info { background-color: #cce7ff; color: #004085; }
+        pre { background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        button { padding: 10px 20px; margin: 5px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Mock API Server for PLC1-Temp4 Testing</h1>
+    
+    <div class="status success">
+        <strong>Mock API Status:</strong> Running on port 8001 (simulated)
+    </div>
+    
+    <div class="status info">
+        <strong>New Function Block Added:</strong> PLC1-Temp4 (R10020 Register)
+    </div>
+    
+    <h2>API Endpoints:</h2>
+    
+    <h3>1. API Test Endpoint</h3>
+    <button onclick="testAPI()">Test /api/v1/test</button>
+    <pre id="test-result"></pre>
+    
+    <h3>2. Sensor Readings Endpoint</h3>
+    <button onclick="getSensorReadings()">Get /api/v1/sensors/readings</button>
+    <pre id="readings-result"></pre>
+    
+    <h3>3. Function Blocks Config Endpoint</h3>
+    <button onclick="getFunctionBlocksConfig()">Get /api/v1/function-blocks/config</button>
+    <pre id="config-result"></pre>
+    
+    <h2>PLC1-Temp4 Status:</h2>
+    <div class="status success">
+        <strong>Block ID:</strong> PLC1-Temp4<br>
+        <strong>Type:</strong> MitsubishiPLCBlock<br>
+        <strong>Register:</strong> R10020 (register: 20)<br>
+        <strong>IP Address:</strong> 10.10.40.8:502<br>
+        <strong>Unit ID:</strong> 1<br>
+        <strong>Temperature:</strong> <span id="plc-temp">54.3°C</span><br>
+        <strong>Raw Register Value:</strong> 543 (R10020)<br>
+        <strong>Conversion:</strong> 543 ÷ 10 = 54.3°C<br>
+        <strong>Status:</strong> <span style="color: green;">Connected & Reading</span>
+    </div>
+    
+    <script>
+        // Mock sensor data including PLC1-Temp4
+        const mockSensorData = [
+            {
+                "block_id": "Temp1",
+                "block_type": "TempSensorBlock",
+                "value": 19.3,
+                "status": "Enabled",
+                "health": "OK",
+                "unit": "°C",
+                "device": "COM7",
+                "modbus_address": 4,
+                "register": 0
+            },
+            {
+                "block_id": "Temp2",
+                "block_type": "TempSensorBlock", 
+                "value": 65.5,
+                "status": "Enabled",
+                "health": "OK",
+                "unit": "°C",
+                "device": "COM7",
+                "modbus_address": 4,
+                "register": 1
+            },
+            {
+                "block_id": "Temp3",
+                "block_type": "TempSensorBlock",
+                "value": 25.1,
+                "status": "Enabled", 
+                "health": "OK",
+                "unit": "°C",
+                "device": "COM7",
+                "modbus_address": 4,
+                "register": 2
+            },
+            {
+                "block_id": "Press1",
+                "block_type": "PressSensorBlock",
+                "value": 10.5,
+                "status": "Enabled",
+                "health": "OK",
+                "unit": "Bar",
+                "device": "COM7", 
+                "modbus_address": 5,
+                "register": 2
+            },
+            {
+                "block_id": "Press2",
+                "block_type": "PressSensorBlock",
+                "value": 8.2,
+                "status": "Enabled",
+                "health": "OK",
+                "unit": "Bar",
+                "device": "COM7",
+                "modbus_address": 5,
+                "register": 3
+            },
+            {
+                "block_id": "PLC1-Temp4",
+                "block_type": "MitsubishiPLCBlock",
+                "value": 54.3,
+                "status": "Enabled",
+                "health": "OK",
+                "unit": "°C",
+                "device": null,
+                "modbus_address": null, 
+                "register": 20,
+                "ip_address": "10.10.40.8",
+                "port": 502,
+                "unit_id": 1,
+                "raw_register_value": 543
+            }
+        ];
+        
+        const mockFunctionBlocksConfig = {
+            "machine_name": "動態分散式功能區塊模型",
+            "description": "包含 PLC1-Temp4 的完整配置，總共 6 個功能區塊",
+            "function_blocks": [
+                {
+                    "block_id": "Temp1",
+                    "block_type": "TempSensorBlock",
+                    "sensor_category": "temperature",
+                    "device": "COM7",
+                    "modbus_address": 4,
+                    "register": 0,
+                    "unit": "°C",
+                    "min_actual": 0.0,
+                    "max_actual": 100.0,
+                    "precision": 0.1
+                },
+                {
+                    "block_id": "Temp2",
+                    "block_type": "TempSensorBlock",
+                    "sensor_category": "temperature",
+                    "device": "COM7",
+                    "modbus_address": 4,
+                    "register": 1,
+                    "unit": "°C",
+                    "min_actual": 0.0,
+                    "max_actual": 100.0,
+                    "precision": 0.1
+                },
+                {
+                    "block_id": "Temp3",
+                    "block_type": "TempSensorBlock",
+                    "sensor_category": "temperature",
+                    "device": "COM7",
+                    "modbus_address": 4,
+                    "register": 2,
+                    "unit": "°C",
+                    "min_actual": 0.0,
+                    "max_actual": 100.0,
+                    "precision": 0.1
+                },
+                {
+                    "block_id": "Press1",
+                    "block_type": "PressSensorBlock",
+                    "sensor_category": "pressure",
+                    "device": "COM7",
+                    "modbus_address": 5,
+                    "register": 2,
+                    "unit": "bar",
+                    "min_actual": 0.0,
+                    "max_actual": 15.0,
+                    "precision": 0.01
+                },
+                {
+                    "block_id": "Press2",
+                    "block_type": "PressSensorBlock",
+                    "sensor_category": "pressure", 
+                    "device": "COM7",
+                    "modbus_address": 5,
+                    "register": 3,
+                    "unit": "bar",
+                    "min_actual": 0.0,
+                    "max_actual": 15.0,
+                    "precision": 0.01
+                },
+                {
+                    "block_id": "PLC1-Temp4",
+                    "block_type": "MitsubishiPLCBlock",
+                    "sensor_category": "temperature",
+                    "ip_address": "10.10.40.8",
+                    "port": 502,
+                    "unit_id": 1,
+                    "register": 20,
+                    "unit": "°C",
+                    "min_actual": 0.0,
+                    "max_actual": 100.0,
+                    "precision": 0.1
+                }
+            ],
+            "timestamp": new Date().toISOString()
+        };
+        
+        function testAPI() {
+            const result = {
+                "status": "ok",
+                "message": "Mock Distributed CDU API is running",
+                "timestamp": new Date().toISOString(),
+                "blocks_count": mockSensorData.length
+            };
+            document.getElementById('test-result').textContent = JSON.stringify(result, null, 2);
+        }
+        
+        function getSensorReadings() {
+            // Add some random variation to simulate real data
+            const readings = mockSensorData.map(sensor => ({
+                ...sensor,
+                value: parseFloat((sensor.value + (Math.random() - 0.5) * 0.5).toFixed(1))
+            }));
+            
+            document.getElementById('readings-result').textContent = JSON.stringify(readings, null, 2);
+            
+            // Update PLC1-Temp4 display
+            const plcTemp4 = readings.find(s => s.block_id === 'PLC1-Temp4');
+            if (plcTemp4) {
+                document.getElementById('plc-temp').textContent = plcTemp4.value + '°C';
+            }
+        }
+        
+        function getFunctionBlocksConfig() {
+            document.getElementById('config-result').textContent = JSON.stringify(mockFunctionBlocksConfig, null, 2);
+        }
+        
+        // Auto-update sensor readings every 3 seconds
+        setInterval(() => {
+            getSensorReadings();
+        }, 3000);
+        
+        // Initial load
+        testAPI();
+        getSensorReadings(); 
+        getFunctionBlocksConfig();
+        
+        console.log('🚀 Mock API Server Started');
+        console.log('📊 PLC1-Temp4 function block is now available');
+        console.log('🔧 6 total function blocks loaded (including PLC1-Temp4)');
+    </script>
+</body>
+</html>

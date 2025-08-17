@@ -1,0 +1,67 @@
+{
+  "system": {
+    "name": "CDU Control System",
+    "version": "2.2.0",
+    "model": "CDU-200KW-V2.2",
+    "serial_number": "CDU202500728001",
+    "installation_date": "2025-07-28",
+    "location": "Data Center Cooling System"
+  },
+  "hardware": {
+    "cpu_cores": 4,
+    "memory_gb": 8,
+    "storage_gb": 256,
+    "network_interfaces": ["eth0", "eth1"],
+    "serial_ports": ["/dev/ttyTHS1", "/dev/ttyUSB0"],
+    "gpio_pins": 40
+  },
+  "performance": {
+    "max_concurrent_connections": 100,
+    "api_rate_limit": 1000,
+    "sensor_update_interval": 1000,
+    "control_loop_interval": 50,
+    "alarm_check_interval": 5000
+  },
+  "features": {
+    "touchscreen_enabled": true,
+    "web_interface_enabled": true,
+    "snmp_enabled": true,
+    "modbus_enabled": true,
+    "distributed_mode": false,
+    "ai_optimization": false,
+    "automatic_backup": true
+  },
+  "limits": {
+    "max_temperature_celsius": 60,
+    "min_temperature_celsius": 5,
+    "max_pressure_mpa": 1.0,
+    "min_pressure_mpa": 0.05,
+    "max_flow_lpm": 200,
+    "min_flow_lpm": 5,
+    "max_pump_rpm": 2000,
+    "min_pump_rpm": 100
+  },
+  "units": {
+    "temperature": "celsius",
+    "pressure": "mpa", 
+    "flow": "lpm",
+    "power": "kw",
+    "voltage": "v",
+    "current": "a"
+  },
+  "maintenance": {
+    "next_scheduled_date": "2025-08-28",
+    "maintenance_interval_days": 30,
+    "critical_parts_replacement_interval_days": 365,
+    "calibration_interval_days": 90
+  },
+  "backup": {
+    "enabled": true,
+    "interval_hours": 24,
+    "retention_days": 30,
+    "backup_path": "backup/",
+    "include_logs": true,
+    "include_configs": true,
+    "compress": true
+  }
+}

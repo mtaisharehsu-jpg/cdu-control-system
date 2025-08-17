@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/init)",
+      "Bash(ls:*)",
+      "WebFetch(domain:redfish.dmtf.org)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(npm ls date-fns)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npm run build:*)",
+      "Bash(python test:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(pip install:*)",
+      "Bash(curl:*)",
+      "Bash(true)",
+      "Bash(timeout 10s npm run dev)",
+      "Bash(npx vite:*)",
+      "Bash(node:*)",
+      "Bash(pkill:*)",
+      "Bash(timeout 15s npm run dev)",
+      "Bash(python:*)",
+      "Bash(/usr/bin/python3 -m pip install:*)",
+      "Bash(/usr/bin/python3:*)",
+      "Bash(ss:*)",
+      "Bash(pip3 list:*)",
+      "WebFetch(domain:www.dmtf.org)",
+      "Bash(grep:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

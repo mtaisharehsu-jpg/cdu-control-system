@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  cdu-control-service:
+    build: .
+    container_name: cdu_service
+    restart: always
+    ports:
+      - "8000:8000" # 將容器的 8000 端口映射到主機
+    devices:
+      - "/dev/ttyTHS1:/dev/ttyTHS1" # 將序列埠設備映射到容器內 (若不存在會被忽略)
+    volumes:
+      - ./cdu_config.yaml:/app/cdu_config.yaml # 掛載設定檔，方便修改後重啟容器即可生效

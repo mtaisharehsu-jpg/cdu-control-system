@@ -1,0 +1,32 @@
+# 這個檔案定義了此特定 CDU 產品的軟體邏輯
+# 開發者只需修改此檔案，即可客製化新產品
+
+FunctionBlocks:
+  #- id: VFD1
+  #  type: PumpVFDBlock # 對應到 blocks/pump_vfd.py 中的 PumpVFDBlock Class
+  #  modbus_address: 1
+  #  device: COM7 # 指定 RS-485 端口
+
+  #- id: VFD2
+  #  type: PumpVFDBlock
+  #  modbus_address: 2
+  #  device: COM7
+
+  - id: Temp1
+    type: TempSensorBlock
+    modbus_address: 4
+    #device: /dev/ttyTHS1
+    device: COM7
+    register: 0 # 假設溫度感測器的 register 是 100
+
+  - id: Press1
+    type: PressSensorBlock
+    modbus_address: 5
+    #device: /dev/ttyTHS1
+    device: COM7
+    register: 2 # 假設壓力感測器的 register 是 200
+
+  #- id: LiquidLevel1
+  #  type: LiquidLevelSensorBlock
+  #  device: /dev/ttyUSB0 # 指定 DI/DO 板的序列埠
+  #  pin: 1 # 假設高液位感測器連接到 pin 1

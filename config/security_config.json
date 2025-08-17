@@ -1,0 +1,44 @@
+{
+  "jwt_expiration_hours": 24,
+  "session_timeout_seconds": 3600,
+  "max_failed_attempts": 5,
+  "lockout_duration_seconds": 1800,
+  "ip_whitelist": [
+    "192.168.100.0/24",
+    "127.0.0.1"
+  ],
+  "ip_blacklist": [],
+  "require_https": true,
+  "secure_headers": true,
+  "rate_limit": {
+    "enabled": true,
+    "requests_per_minute": 60,
+    "burst_limit": 10
+  },
+  "audit_log": {
+    "enabled": true,
+    "retention_days": 365,
+    "file_path": "logs/security_audit.log"
+  },
+  "encryption": {
+    "algorithm": "AES-256",
+    "key_rotation_days": 90
+  },
+  "two_factor": {
+    "enabled": true,
+    "required_roles": ["administrator", "super_admin"]
+  },
+  "password_policy": {
+    "min_length": 8,
+    "max_length": 128,
+    "require_uppercase": true,
+    "require_lowercase": true,
+    "require_digits": true,
+    "require_special": true,
+    "special_chars": "!@#$%^&*()_+-=[]{}|;:,.<>?",
+    "password_history": 5,
+    "max_age_days": 90,
+    "lockout_attempts": 5,
+    "lockout_duration": 1800
+  }
+}

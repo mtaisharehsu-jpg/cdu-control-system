@@ -1,0 +1,416 @@
+# 分散式自主CDU系統配置
+CDU_System:
+  cluster_id: "CDU_CLUSTER_01"
+  node_id: "CDU_01"  # 每台CDU需設定不同ID: CDU_01~CDU_06
+  total_nodes: 6
+  max_capacity_kw: 50  # 單台CDU最大容量
+  
+  # 優先級設定 (用於Master選舉)
+  priority_map:
+    CDU_01: 1  # 最高優先級
+    CDU_02: 2
+    CDU_03: 3  
+    CDU_04: 4
+    CDU_05: 5
+    CDU_06: 6  # 最低優先級
+
+# Raft共識算法配置
+Raft:
+  heartbeat_interval_ms: 50
+  election_timeout_ms: 150
+  log_replication_timeout_ms: 100
+  
+# 通訊協定配置
+Communication:
+  # CAN Bus配置
+  can_bus:
+    interface: "can0"
+    bitrate: 500000
+    heartbeat_interval_ms: 50
+    
+  # Modbus TCP配置  
+  modbus_tcp:
+    port: 502
+    query_interval_ms: 100
+    
+  # MQTT配置
+  mqtt:
+    broker: "mqtt.cdu.local"
+    port: 8883
+    username: "cdu_system"
+    use_tls: true
+    publish_interval_ms: 1000
+    topics:
+      status: "cdu/status"
+      commands: "cdu/commands"
+      metrics: "cdu/metrics"
+      
+  # RESTful API配置
+  api:
+    port: 8001
+    use_https: false
+    cert_file: ""
+    key_file: ""
+
+# 負載調度配置
+Load_Balancing:
+  normal_load_distribution:
+    CDU_01: 0.25  # 25% (Master承擔較多負載)
+    CDU_02: 0.20  # 20%  
+    CDU_03: 0.15  # 15%
+    CDU_04: 0.15  # 15%
+    CDU_05: 0.125 # 12.5%
+    CDU_06: 0.125 # 12.5%
+    
+  emergency_capacity_reserve: 0.20  # 20%緊急容量保留
+  rebalance_threshold: 0.05  # 5%不平衡觸發重新分配
+
+# AI優化配置
+AI_Optimization:
+  enable_load_prediction: true
+  enable_efficiency_optimization: true
+  enable_fault_prediction: true
+  learning_window_hours: 24
+  prediction_horizon_minutes: 30
+
+# 安全配置
+Security:
+  enable_tpm: false
+  enable_mutual_tls: false
+  enable_rbac: true
+  audit_logging: true
+  roles:
+    - name: "system_admin"
+      level: 4
+    - name: "operator" 
+      level: 3
+    - name: "monitor"
+      level: 2
+    - name: "readonly"
+      level: 1
+
+# 功能區塊配置 (保持原有架構)
+FunctionBlocks:
+
+  - id: Temp1
+    type: TempSensorBlock
+    modbus_address: 4
+    device: COM7
+    register: 0
+    critical_temp: 100.0
+
+  - id: Temp2
+    type: TempSensorBlock
+    modbus_address: 4
+    device: COM7
+    register: 01
+    critical_temp: 100.0
+
+  - id: Temp3
+    type: TempSensorBlock
+    modbus_address: 4
+    device: COM7
+    register: 02
+    critical_temp: 100.0
+
+  - id: Press1
+    type: PressSensorBlock
+    modbus_address: 5
+    device: COM7
+    register: 2
+    critical_pressure: 15.0
+
+  - id: Press2
+    type: PressSensorBlock
+    modbus_address: 5
+    device: COM7
+    register: 3
+    critical_pressure: 15.0  
+
+ #- id: MitsubishiPLC1
+  # type: MitsubishiPLCBlock
+  # ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    #p_address: "192.168.3.39"  # LA12A三菱F5U PLC實際IP地址
+  # port: 502
+  # unit_id: 1
+  # start_register: 0  # R10000
+  # register_count: 11   # R10000-R10010
+  ## register_count: 3   # R10000-R10010
+  # modbus_start_address: 0  # R10000對應Modbus地址0
+  # r_start_register: 10500  # R10500
+  # r_register_count: 201    # R10500-R10700 (201個暫存器)
+
+  - id: PLC1-Temp1
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 111 # R10111
+
+  - id: PLC1-Temp2
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 112 # R10112
+
+  - id: PLC1-Temp3
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 113 # R10113
+
+  - id: PLC1-Temp4
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 114 # R10114     
+
+  - id: PLC1-Temp5
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 115 # R10115
+
+  - id: PLC1-Temp6
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 116 # R10116   
+
+  - id: PLC1-Temp7
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 117 # R10117 
+
+  - id: PLC1-Temp8
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 118 # R10118
+
+  - id: PLC1-Temp9
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 119 # R10119
+
+  - id: PLC1-Temp10
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 120 # R10120
+
+  - id: PLC1-Temp11
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 121 # R10121
+
+  - id: PLC1-Temp12
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 122 # R10122
+
+  - id: PLC1-Temp13
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 123 # R10123
+
+  - id: PLC1-Temp14
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 124 # R10124
+
+  - id: PLC1-Temp15
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 125 # R10125
+
+  - id: PLC1-Temp16
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 126 # R10126
+
+  
+  - id: PLC1-Press1
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 81 # R10081 (壓力感測器)
+
+  - id: PLC1-Press2
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 82 # R10082 (壓力感測器)
+  
+  - id: PLC1-Press3
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 83 # R10083 (壓力感測器)
+
+  - id: PLC1-Press4
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 84 # R10084 (壓力感測器)
+
+  - id: PLC1-Press5
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 85 # R10085 (壓力感測器)
+
+  - id: PLC1-Press6
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 86 # R10086 (壓力感測器)
+
+  - id: PLC1-Press7
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 87 # R10087 (壓力感測器)
+
+  - id: PLC1-Press8
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 88 # R10088 (壓力感測器)
+
+  - id: PLC1-Press9
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 89 # R10089 (壓力感測器)
+
+  - id: PLC1-Press10
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 90 # R10090 (壓力感測器)
+
+  - id: PLC1-Press11
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 91 # R10091 (壓力感測器)
+
+  - id: PLC1-Press12
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 92 # R10092 (壓力感測器)
+
+  - id: PLC1-Press13
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 93 # R10093 (壓力感測器)
+
+  - id: PLC1-Press14
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 94 # R10094 (壓力感測器)
+
+  - id: PLC1-Press15
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 95 # R10095 (壓力感測器)
+
+  - id: PLC1-Press16
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 96 # R10096 (壓力感測器)
+
+  - id: PLC1-Press17
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 97 # R10097 (壓力感測器)
+
+  - id: PLC1-Press18
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 98 # R10089 (壓力感測器)
+
+
+
+  - id: PLC1-Flow1
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 61 # R10061 (流量感測器)
+
+  - id: PLC1-Flow2
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 62 # R10062 (流量感測器)
+
+  - id: PLC1-Flow3
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 63 # R10063 (流量感測器)
+
+  - id: PLC1-Flow4
+    type: MitsubishiPLCBlock
+    ip_address: "10.10.40.8"  # 測試機三菱F5U PLC實際IP地址
+    port: 502
+    unit_id: 1
+    register: 64 # R10064 (流量感測器)
+
+
+  #- id: LiquidLevel1
+  #  type: LiquidLevelSensorBlock
+  #  device: /dev/ttyUSB0
+  #  pin: 1

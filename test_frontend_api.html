@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend API Test</title>
+</head>
+<body>
+    <h1>Frontend API Connection Test</h1>
+    <button onclick="testAPI()">Test API Connection</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                console.log('Testing API connection to http://localhost:8001/api/v1/test');
+                const response = await fetch('http://localhost:8001/api/v1/test');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('API test response:', data);
+                
+                // Now test sensor readings
+                console.log('Testing sensor readings...');
+                const sensorResponse = await fetch('http://localhost:8001/api/v1/sensors/readings');
+                
+                if (!sensorResponse.ok) {
+                    throw new Error(`Sensor API HTTP ${sensorResponse.status}: ${sensorResponse.statusText}`);
+                }
+                
+                const sensorData = await sensorResponse.json();
+                console.log('Sensor readings:', sensorData);
+                
+                resultDiv.innerHTML = `
+                    <h3>✅ API Connection Successful!</h3>
+                    <p><strong>Test response:</strong> ${JSON.stringify(data)}</p>
+                    <h3>Sensor Readings:</h3>
+                    <pre>${JSON.stringify(sensorData, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                console.error('API test failed:', error);
+                resultDiv.innerHTML = `
+                    <h3>❌ API Connection Failed</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p>請確認：</p>
+                    <ul>
+                        <li>後端服務正在運行： <code>python distributed_main_api.py distributed_cdu_config.yaml</code></li>
+                        <li>服務運行在端口 8001</li>
+                        <li>沒有CORS問題</li>
+                    </ul>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

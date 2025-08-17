@@ -1,0 +1,907 @@
+{
+  "default": {
+    "machine_name": "標準CDU機種",
+    "description": "默認的CDU機種配置，包含所有標準感測器",
+    "sensor_config": {
+      "flow": {
+        "name": "流量訊息",
+        "sensors": {
+          "flow_reserved_1": {
+            "register": 10061,
+            "description": "F預留",
+            "reserved": true
+          },
+          "secondary_outlet_flow_f2": {
+            "register": 10062,
+            "description": "二次側出水量F2",
+            "precision": 1,
+            "range": "0~700 (對應0~70LPM)",
+            "unit": "LPM",
+            "min_raw": 0,
+            "max_raw": 700,
+            "min_actual": 0,
+            "max_actual": 70,
+            "conversion_factor": 0.1
+          },
+          "flow_reserved_2": {
+            "register": 10064,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_3": {
+            "register": 10065,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_4": {
+            "register": 10066,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_5": {
+            "register": 10067,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_6": {
+            "register": 10068,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_7": {
+            "register": 10069,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_8": {
+            "register": 10070,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_9": {
+            "register": 10071,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_10": {
+            "register": 10072,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_11": {
+            "register": 10073,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_12": {
+            "register": 10074,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_13": {
+            "register": 10075,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_14": {
+            "register": 10076,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_15": {
+            "register": 10077,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_16": {
+            "register": 10078,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_17": {
+            "register": 10079,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_18": {
+            "register": 10080,
+            "description": "F預留",
+            "reserved": true
+          },
+          "flow_reserved_19": {
+            "register": 10081,
+            "description": "F預留",
+            "reserved": true
+          }
+        }
+      },
+      "pressure": {
+        "name": "壓力訊息",
+        "sensors": {
+          "pressure_reserved_1": {
+            "register": 10081,
+            "description": "P預留",
+            "reserved": true
+          },
+          "secondary_inlet_pressure_p12": {
+            "register": 10082,
+            "description": "二次側入水壓力P12",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          },
+          "secondary_outlet_pressure_p13": {
+            "register": 10083,
+            "description": "二次側出水壓力P13",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          },
+          "pressure_reserved_2": {
+            "register": 10085,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_3": {
+            "register": 10086,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_4": {
+            "register": 10087,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_5": {
+            "register": 10088,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_6": {
+            "register": 10089,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_7": {
+            "register": 10090,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_8": {
+            "register": 10091,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_9": {
+            "register": 10092,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_10": {
+            "register": 10093,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_11": {
+            "register": 10094,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_12": {
+            "register": 10095,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_13": {
+            "register": 10096,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_14": {
+            "register": 10097,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_15": {
+            "register": 10098,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_16": {
+            "register": 10099,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_17": {
+            "register": 10100,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_18": {
+            "register": 10101,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_19": {
+            "register": 10102,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_20": {
+            "register": 10103,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_21": {
+            "register": 10104,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_22": {
+            "register": 10105,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_23": {
+            "register": 10106,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_24": {
+            "register": 10107,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_25": {
+            "register": 10108,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_26": {
+            "register": 10109,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_27": {
+            "register": 10110,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_28": {
+            "register": 10111,
+            "description": "P預留",
+            "reserved": true
+          },
+          "pressure_reserved_29": {
+            "register": 10112,
+            "description": "P預留",
+            "reserved": true
+          }
+        }
+      },
+      "temperature": {
+        "name": "溫度訊息",
+        "sensors": {
+          "secondary_return_temp_t11": {
+            "register": 10111,
+            "description": "二次側回水溫度T11",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "secondary_tank_temp_t12": {
+            "register": 10112,
+            "description": "二次側水箱溫度T12",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "secondary_outlet_temp_t13": {
+            "register": 10113,
+            "description": "二次側出水溫度T13",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "temp_reserved_2": {
+            "register": 10115,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_3": {
+            "register": 10116,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_4": {
+            "register": 10117,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_5": {
+            "register": 10118,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_6": {
+            "register": 10119,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_7": {
+            "register": 10120,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_8": {
+            "register": 10121,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_9": {
+            "register": 10122,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_10": {
+            "register": 10123,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_11": {
+            "register": 10124,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_12": {
+            "register": 10125,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_13": {
+            "register": 10126,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_14": {
+            "register": 10127,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_15": {
+            "register": 10128,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_16": {
+            "register": 10129,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_17": {
+            "register": 10130,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_18": {
+            "register": 10131,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_19": {
+            "register": 10132,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_20": {
+            "register": 10133,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_21": {
+            "register": 10134,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_22": {
+            "register": 10135,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_23": {
+            "register": 10136,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_24": {
+            "register": 10137,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_25": {
+            "register": 10138,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_26": {
+            "register": 10139,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_27": {
+            "register": 10140,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_28": {
+            "register": 10141,
+            "description": "T預留",
+            "reserved": true
+          },
+          "temp_reserved_29": {
+            "register": 10142,
+            "description": "T預留",
+            "reserved": true
+          }
+        }
+      },
+      "io": {
+        "name": "輸入輸出訊息",
+        "sensors": {
+          "tank_level_switch_x17": {
+            "register": 10141,
+            "description": "二次側水箱液位開關X17",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "正常",
+              "1": "高水位"
+            }
+          },
+          "io_reserved_1": {
+            "register": 10142,
+            "description": "IO預留",
+            "reserved": true
+          },
+          "leak_detection_x16": {
+            "register": 10143,
+            "description": "盛水盤漏液偵測X16",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "漏水",
+              "1": "正常"
+            }
+          },
+          "io_reserved_2": {
+            "register": 10144,
+            "description": "IO預留",
+            "reserved": true
+          },
+          "io_na_2": {
+            "register": 10153,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_3": {
+            "register": 10154,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_4": {
+            "register": 10155,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_5": {
+            "register": 10156,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_6": {
+            "register": 10157,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_7": {
+            "register": 10158,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "water_pump_output_y17": {
+            "register": 10151,
+            "description": "補水泵輸出Y17",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "待機",
+              "1": "動作"
+            }
+          },
+          "io_na_8": {
+            "register": 10159,
+            "description": "IO_NA",
+            "reserved": true
+          },
+          "io_na_9": {
+            "register": 10160,
+            "description": "IO_NA",
+            "reserved": true
+          }
+        }
+      }
+    },
+    "created_time": "2025-07-21T14:59:44.428482",
+    "updated_time": "2025-07-21T14:59:44.428488"
+  },
+  "cdu_compact": {
+    "machine_name": "緊湊型CDU",
+    "description": "緊湊型CDU機種，感測器數量較少",
+    "sensor_config": {
+      "temperature": {
+        "name": "溫度訊息",
+        "sensors": {
+          "secondary_return_temp_t11": {
+            "register": 10111,
+            "description": "二次側回水溫度T11",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "secondary_tank_temp_t12": {
+            "register": 10112,
+            "description": "二次側水箱溫度T12",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "pressure": {
+        "name": "壓力訊息",
+        "sensors": {
+          "secondary_inlet_pressure_p12": {
+            "register": 10082,
+            "description": "二次側入水壓力P12",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          }
+        }
+      },
+      "flow": {
+        "name": "流量訊息",
+        "sensors": {
+          "secondary_outlet_flow_f2": {
+            "register": 10062,
+            "description": "二次側出水量F2",
+            "precision": 1,
+            "range": "0~700 (對應0~70LPM)",
+            "unit": "LPM",
+            "min_raw": 0,
+            "max_raw": 700,
+            "min_actual": 0,
+            "max_actual": 70,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "io": {
+        "name": "輸入輸出訊息",
+        "sensors": {
+          "tank_level_switch_x17": {
+            "register": 10141,
+            "description": "二次側水箱液位開關X17",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "正常",
+              "1": "高水位"
+            }
+          }
+        }
+      }
+    },
+    "created_time": "2025-07-21T14:59:44.428492",
+    "updated_time": "2025-07-21T14:59:44.428493"
+  },
+  "cdu_advanced": {
+    "machine_name": "高級CDU機種",
+    "description": "高級CDU機種，包含額外的感測器和功能",
+    "sensor_config": {
+      "temperature": {
+        "name": "溫度訊息",
+        "sensors": {
+          "secondary_return_temp_t11": {
+            "register": 10111,
+            "description": "二次側回水溫度T11",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "secondary_tank_temp_t12": {
+            "register": 10112,
+            "description": "二次側水箱溫度T12",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "secondary_outlet_temp_t13": {
+            "register": 10113,
+            "description": "二次側出水溫度T13",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          },
+          "ambient_temp_t14": {
+            "register": 10114,
+            "description": "環境溫度T14",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "pressure": {
+        "name": "壓力訊息",
+        "sensors": {
+          "secondary_inlet_pressure_p12": {
+            "register": 10082,
+            "description": "二次側入水壓力P12",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          },
+          "secondary_outlet_pressure_p13": {
+            "register": 10083,
+            "description": "二次側出水壓力P13",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          },
+          "system_pressure_p14": {
+            "register": 10084,
+            "description": "系統壓力P14",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          }
+        }
+      },
+      "flow": {
+        "name": "流量訊息",
+        "sensors": {
+          "secondary_outlet_flow_f2": {
+            "register": 10062,
+            "description": "二次側出水量F2",
+            "precision": 1,
+            "range": "0~700 (對應0~70LPM)",
+            "unit": "LPM",
+            "min_raw": 0,
+            "max_raw": 700,
+            "min_actual": 0,
+            "max_actual": 70,
+            "conversion_factor": 0.1
+          },
+          "bypass_flow_f3": {
+            "register": 10063,
+            "description": "旁通流量F3",
+            "precision": 1,
+            "range": "0~700 (對應0~70LPM)",
+            "unit": "LPM",
+            "min_raw": 0,
+            "max_raw": 700,
+            "min_actual": 0,
+            "max_actual": 70,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "io": {
+        "name": "輸入輸出訊息",
+        "sensors": {
+          "tank_level_switch_x17": {
+            "register": 10141,
+            "description": "二次側水箱液位開關X17",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "正常",
+              "1": "高水位"
+            }
+          },
+          "leak_detection_x16": {
+            "register": 10143,
+            "description": "盛水盤漏液偵測X16",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "漏水",
+              "1": "正常"
+            }
+          },
+          "water_pump_output_y17": {
+            "register": 10151,
+            "description": "補水泵輸出Y17",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "待機",
+              "1": "動作"
+            }
+          },
+          "alarm_output_y18": {
+            "register": 10152,
+            "description": "警報輸出Y18",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "正常",
+              "1": "警報"
+            }
+          }
+        }
+      }
+    },
+    "created_time": "2025-07-21T14:59:44.428502",
+    "updated_time": "2025-07-21T14:59:44.428502"
+  },
+  "cdu_simple": {
+    "machine_name": "簡單CDU機種",
+    "description": "只包含基本感測器的簡單CDU機種",
+    "sensor_config": {
+      "temperature": {
+        "name": "溫度訊息",
+        "sensors": {
+          "main_temp": {
+            "register": 10111,
+            "description": "主要溫度",
+            "precision": 0.1,
+            "range": "100~800 (對應10~80℃)",
+            "unit": "℃",
+            "min_raw": 100,
+            "max_raw": 800,
+            "min_actual": 10.0,
+            "max_actual": 80.0,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "pressure": {
+        "name": "壓力訊息",
+        "sensors": {
+          "main_pressure": {
+            "register": 10082,
+            "description": "主要壓力",
+            "precision": 0.01,
+            "range": "5~600 (對應0.05~6bar)",
+            "unit": "bar",
+            "min_raw": 5,
+            "max_raw": 600,
+            "min_actual": 0.05,
+            "max_actual": 6.0,
+            "conversion_factor": 0.01
+          }
+        }
+      },
+      "flow": {
+        "name": "流量訊息",
+        "sensors": {
+          "main_flow": {
+            "register": 10062,
+            "description": "主要流量",
+            "precision": 1,
+            "range": "0~700 (對應0~70LPM)",
+            "unit": "LPM",
+            "min_raw": 0,
+            "max_raw": 700,
+            "min_actual": 0,
+            "max_actual": 70,
+            "conversion_factor": 0.1
+          }
+        }
+      },
+      "io": {
+        "name": "輸入輸出訊息",
+        "sensors": {
+          "main_switch": {
+            "register": 10141,
+            "description": "主要開關",
+            "precision": 0,
+            "range": "0~1",
+            "unit": "",
+            "status_map": {
+              "0": "關閉",
+              "1": "開啟"
+            }
+          }
+        }
+      }
+    },
+    "created_time": "2025-07-21T14:59:44.428504",
+    "updated_time": "2025-07-21T14:59:44.428505"
+  }
+}
